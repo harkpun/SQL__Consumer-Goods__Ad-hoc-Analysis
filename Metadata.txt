@@ -9,7 +9,6 @@ This file provides a comprehensive overview of the tables found in the 'gdb023' 
 
 
 
-
 Column Description for dim_customer table:
 1. customer_code: The 'customer_code' column features unique identification codes for every customer in the dataset. These codes can be used to track a customer's sales history, demographic information, and other relevant details. For example, the codes could look like '70002017', '90005160', and '80007195' respectively.
 
@@ -24,7 +23,6 @@ Column Description for dim_customer table:
 6. region: The 'region' column categorizes countries according to their geographic location, including "APAC" (Asia Pacific), "EU" (Europe), "NA" (North America), and "LATAM" (Latin America).
 
 7. sub_zone: "The 'sub_zone' column further breaks down the regions into sub-regions, such as "India", "ROA" (Rest of Asia), "ANZ" (Australia and New Zealand), "SE" Southeast Asia), "NE" (Northeast Asia), "NA" (North America), and "LATAM" (Latin America)."
-
 
 
 
@@ -43,14 +41,12 @@ Column Description for dim_product table:
 
 
 
-
 Column Description for fact_gross_price table:
 1. product_code: The 'product_code' column features unique identification codes for each product.
 
 2. fiscal_year: The 'fiscal_year' column contains the fiscal period in which the product sale was recorded. A fiscal year is a 12-month period that is used for accounting purposes and often differs from the calendar year. For Atliq Hardware, the fiscal year starts in September. The data available in this column covers the fiscal years 2020 and 2021.
 
 3. gross_price: The 'gross_price' column holds the initial price of a product, prior to any reductions or taxes. It is the original selling price of the product.
-
 
 
 
@@ -63,14 +59,12 @@ Column Description for fact_manufacturing_cost:
 
 
 
-
 Column Description for fact_pre_invoice_deductions:
 1. customer_code: The 'customer_code' column features unique identification codes for every customer in the dataset. These codes can be used to track a customer's sales history, demographic information, and other relevant details. For example, the codes could look like '70002017', '90005160', and '80007195' respectively.
 
 2. fiscal_year: The "fiscal_year" column holds the fiscal period when the sale of a product occurred.
 
 3. pre_invoice_discount_pct: The "pre_invoice_discount_pct" column contains the percentage of pre-invoice deductions for each product. Pre-invoice deductions are discounts that are applied to the gross price of a product before the invoice is generated, and typically applied to large orders or long-term contracts.
-
 
 
 
@@ -84,11 +78,5 @@ Column Description for fact_sales_monthly:
 4. sold_quantity: The "sold_quantity" column contains the number of units of a product that were sold. This information can be used to understand the sales volume ofproducts and to compare the sales volume of different products or variants.
 
 5. fiscal_year: The "fiscal_year" column holds the fiscal period when the sale of a product occurred.
-
-
-
-
-
-
 
 
