@@ -9,19 +9,19 @@ WHERE region='APAC' AND customer="Atliq Exclusive";
        The final output contains these fields, 
 		- unique_products_2020 
             	- unique_products_2021 
-            	- percentage_chg */
+            	- percentage_chg 
+*/
 WITH up20 as (
 	    SELECT 
 	        COUNT(DISTINCT product_code) as unique_products_2020
 	    FROM fact_sales_monthly 
-	    WHERE fiscal_year=2020
-),
+	    WHERE fiscal_year=2020),
      up21 as (
 	    SELECT 
 		COUNT(DISTINCT product_code) as unique_products_2021
 	    FROM fact_sales_monthly 
-	    WHERE fiscal_year=2021
-)
+	    WHERE fiscal_year=2021)
+
 SELECT 
     up20.unique_products_2020,
     up21.unique_products_2021,
@@ -33,7 +33,8 @@ CROSS JOIN up21;
 /* Q3. Provide a report with all the unique product counts for each segment and sort them in descending order of product counts. 
        The final output contains 2 fields, 
 		- segment 
-                - product_count */
+                - product_count 
+*/
 SELECT 
     segment,
     COUNT(DISTINCT product_code) as product_count
@@ -47,17 +48,18 @@ ORDER BY product_count DESC;
 		- segment 
             	- product_count_2020 
             	- product_count_2021 
-            	- difference */
+            	- difference 
+*/
 WITH UniqueProducts as (
-    SELECT
-	p.segment,
-        COUNT(DISTINCT CASE when s.fiscal_year = 2020 then s.product_code END) as unique_products_2020,
-        COUNT(DISTINCT CASE when s.fiscal_year = 2021 then s.product_code END) as unique_products_2021
-    FROM fact_sales_monthly s
-    JOIN dim_product p 
-	ON s.product_code = p.product_code
-    GROUP BY p.segment
-)
+        SELECT
+	    p.segment,
+            COUNT(DISTINCT CASE when s.fiscal_year = 2020 then s.product_code END) as unique_products_2020,
+            COUNT(DISTINCT CASE when s.fiscal_year = 2021 then s.product_code END) as unique_products_2021
+        FROM fact_sales_monthly s
+        JOIN dim_product p 
+	    ON s.product_code = p.product_code
+        GROUP BY p.segment)
+
 SELECT 
     segment,
     unique_products_2020,
@@ -71,7 +73,8 @@ ORDER BY difference DESC;
        The final output should contain these fields, 
 		- product_code 
             	- product 
-            	- manufacturing_cost */
+            	- manufacturing_cost 
+*/
 SELECT 
     m.product_code, 
     p.product, 
@@ -89,7 +92,8 @@ WHERE
        The final output contains these fields,
 		- customer_code
 		- customer
-		- average_discount_percentage */ 
+		- average_discount_percentage 
+*/ 
 SELECT 
     c.customer_code,
     c.customer, 
@@ -109,7 +113,8 @@ LIMIT 5;
        The final report contains these columns:
 		- Month
 		- Year
-		- Gross sales Amount */
+		- Gross sales Amount 
+*/
 WITH temp_table as (
 	SELECT 
 	    MONTH(s.date) as month_number,
@@ -125,8 +130,8 @@ WITH temp_table as (
 	WHERE 
 	    customer="Atliq exclusive"
 	GROUP BY month, year, month_number
-	ORDER BY year, month_number
-)
+	ORDER BY year, month_number)
+	
 SELECT 
     month, 
     year, 
@@ -137,15 +142,16 @@ FROM temp_table;
 /* Q8. In which quarter of 2020, got the maximum total_sold_quantity? 
        The final output contains these fields sorted by the total_sold_quantity,
 		- Quarter
-		- total_sold_quantity */
+		- total_sold_quantity 
+*/
 WITH temp_table as (
 	SELECT 
 	    date,
             MONTH(DATE_ADD(date, INTERVAL 4 MONTH)) as period, 
             fiscal_year,
             sold_quantity 
-	FROM fact_sales_monthly
-)
+	FROM fact_sales_monthly)
+	
 SELECT 
     CASE 
 	when period/3 <= 1 then "Q1"
@@ -164,7 +170,8 @@ ORDER BY total_sold_quanity_in_mln DESC;
        The final output contains these fields, 
 		- channel 
                 - gross_sales_mln 
-                - percentage */
+                - percentage 
+*/
 WITH temp_table AS (
 	SELECT 
 	    c.channel,
@@ -177,8 +184,8 @@ WITH temp_table AS (
 	    ON s.customer_code = c.customer_code
 	WHERE s.fiscal_year= 2021
 	GROUP BY c.channel
-	ORDER BY total_sales DESC
-)
+	ORDER BY total_sales DESC)
+	
 SELECT 
   channel,
   ROUND(total_sales/1000000, 2) as gross_sales_in_mln,
@@ -204,7 +211,7 @@ WITH temp_table as (
 	JOIN dim_product p
 	    ON s.product_code = p.product_code
 	WHERE fiscal_year = 2021
-	GROUP BY division, s.product_code, CONCAT(p.product," (",p.variant,")")
-)
+	GROUP BY division, s.product_code, product)
+	
 SELECT * FROM temp_table
 WHERE rank_order <= 3;
