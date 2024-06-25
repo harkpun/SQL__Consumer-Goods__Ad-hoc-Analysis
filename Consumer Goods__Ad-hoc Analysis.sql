@@ -199,7 +199,8 @@ FROM temp_table;
                 - product_code 
                 - product 
                 - total_sold_quantity 
-                - rank_order */
+                - rank_order 
+*/
 WITH temp_table as (
 	SELECT 
 	    p.division, 
