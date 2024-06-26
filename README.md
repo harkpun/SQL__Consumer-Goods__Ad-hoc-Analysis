@@ -1,4 +1,4 @@
-# SQL__Consumer-Goods__Ad-hoc-Analysis
+## SQL__Consumer-Goods__Ad-hoc-Analysis
 
 Atliq Hardwares (imaginary company) is one of the leading computer hardware producers in India and well expanded in other countries too.
 
