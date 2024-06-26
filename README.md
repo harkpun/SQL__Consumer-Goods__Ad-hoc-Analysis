@@ -10,4 +10,4 @@ However, the management noticed that they do not get enough insights to make qui
 2.    You need to run a SQL query to answer these requests. 
 3.    The target audience of this dashboard is top-level management - hence you need to create a presentation to show the insights.
 
-## Domain: Consumer Goods | Function: Executive Management
+### Domain: Consumer Goods | Function: Executive Management
